@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { POST } from 'types';
 
 const QUERY_TAG = 'comments' as const;
 
@@ -7,20 +8,16 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_SERVER_URL }),
   tagTypes: [QUERY_TAG],
   endpoints: (builder) => ({
-    getComments: builder.query({
-      query: () => ({
-        url: '/comments',
-        method: 'GET',
-        providesTags: [QUERY_TAG],
-      }),
+    getComments: builder.query<POST[], void>({
+      query: () => '/comments',
+      providesTags: [QUERY_TAG],
     }),
+
     getCommentById: builder.query({
-      query: (commentId) => ({
-        url: `/comments/${commentId}`,
-        method: 'GET',
-        providesTags: [QUERY_TAG],
-      }),
+      query: (commentId) => `/comments/${commentId}`,
+      providesTags: [QUERY_TAG],
     }),
+
     createComment: builder.mutation({
       query: (comment) => ({
         url: '/comments',
@@ -29,6 +26,7 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: [QUERY_TAG],
     }),
+
     updateComment: builder.mutation({
       query: (comment) => ({
         url: `/comments/${comment.id}`,
@@ -37,6 +35,7 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: [QUERY_TAG],
     }),
+
     deleteCommentById: builder.mutation({
       query: (id) => ({
         url: `/comments/${id}`,
