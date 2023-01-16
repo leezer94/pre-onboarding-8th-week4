@@ -1,3 +1,4 @@
+import Form from 'components/Form/Form';
 import Pagination from 'components/Pagination/Pagination';
 
 import Comments from '../components/Comments/Comments';
@@ -17,6 +18,7 @@ const Main = () => {
       }}
     >
       <Comments />
+      <Form />
       <Pagination />
     </div>
   );

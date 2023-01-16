@@ -2,9 +2,7 @@ import { FlexBoxProps } from 'types';
 
 import FlexBox from './FlexBox.style';
 
-const Flex = (props: FlexBoxProps) => {
-  const { children, ...rest } = props;
-
+const Flex = ({ children, ...rest }: FlexBoxProps) => {
   return <FlexBox {...rest}>{children}</FlexBox>;
 };
 

@@ -9,7 +9,9 @@ const Wrapper = styled.ul`
   margin: 0 auto;
 
   width: 90%;
-  height: 90%;
+  height: 70%;
+
+  border: 1px solid red;
 `;
 
 const ListItem = styled.li`

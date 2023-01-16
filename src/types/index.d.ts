@@ -20,3 +20,10 @@ declare type POST = {
   id: number;
   profile_url: string;
 };
+
+declare type InputProps = {
+  id: string;
+  name: string;
+  label: string;
+  type?: InputType;
+} & DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
