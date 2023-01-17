@@ -17,7 +17,7 @@ declare type POST = {
   author: string;
   content: string;
   createdAt: string;
-  id: number;
+  id: number | null;
   profile_url: string;
 };
 
