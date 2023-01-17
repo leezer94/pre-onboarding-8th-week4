@@ -1,12 +1,44 @@
-import * as S from './Pagination.style';
+import { useGetCommentsQuery } from 'api/apiSlice';
+import { Button } from 'components/@commons';
 
-const Pagination = () => {
-  const number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+import * as S from './Pagination.style';
+import useCurrentPage from '../../hooks/useCurrentPage';
+
+type PaginationProps = {
+  limit: number;
+};
+
+const Pagination = ({ limit }: PaginationProps) => {
+  const { currentPage, handleCurrentPage } = useCurrentPage();
+  const { pageNumbersArray, isLoading } = useGetCommentsQuery(undefined, {
+    selectFromResult: ({ data, error, isLoading }) => ({
+      pageNumbersArray: data
+        ? Array.from({ length: Math.ceil(data?.length / limit) })
+        : [],
+      error,
+      isLoading,
+    }),
+  });
+
+  if (isLoading) {
+    return <div>데이터 불러오는중 ...</div>;
+  }
 
   return (
     <S.Container>
-      {number.map((item) => {
-        return <S.NumberContainer key={item}>{item}</S.NumberContainer>;
+      {pageNumbersArray?.map((_, i) => {
+        return (
+          <Button
+            type='button'
+            key={i}
+            content={(i + 1).toString()}
+            onClick={() => handleCurrentPage(i + 1)}
+            css={{
+              borderRadius: '50px',
+              backgroundColor: currentPage === i + 1 ? 'lightgrey' : 'white',
+            }}
+          />
+        );
       })}
     </S.Container>
   );
