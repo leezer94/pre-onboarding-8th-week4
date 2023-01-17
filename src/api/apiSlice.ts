@@ -9,15 +9,18 @@ export const apiSlice = createApi({
   tagTypes: [QUERY_TAG],
   endpoints: (builder) => ({
     getComments: builder.query<POST[], void>({
-      query: () => '/comments',
+      query: () => '/comments?_sort=id',
       providesTags: [QUERY_TAG],
     }),
-
     getCommentById: builder.query({
       query: (commentId) => `/comments/${commentId}`,
       providesTags: [QUERY_TAG],
     }),
-
+    getPaginatedComments: builder.query<POST[], any>({
+      query: ({ page, limit }: { page: number; limit: number }) =>
+        `/comments?_page=${page}&_limit=${limit}`,
+      providesTags: [QUERY_TAG],
+    }),
     createComment: builder.mutation({
       query: (comment) => ({
         url: '/comments',
@@ -49,6 +52,7 @@ export const apiSlice = createApi({
 export const {
   useGetCommentsQuery,
   useGetCommentByIdQuery,
+  useGetPaginatedCommentsQuery,
   useCreateCommentMutation,
   useUpdateCommentMutation,
   useDeleteCommentByIdMutation,
