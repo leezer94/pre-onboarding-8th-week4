@@ -7,8 +7,6 @@ const Form = styled.form`
 
   width: 90%;
   height: 30%;
-
-  border: 1px solid blue;
 `;
 
 export { Form };

@@ -1,13 +1,15 @@
 import styled, { keyframes } from 'styled-components';
 
 const Container = styled.div`
-  position: relative;
+  position: absolute;
   top: 40%;
   left: 35%;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
+
+  background-color: transparent;
 `;
 
 const rotate = keyframes`
@@ -21,6 +23,7 @@ const rotate = keyframes`
 `;
 
 const Spinner = styled.div<{ size: string; speed: string }>`
+  position: absolute;
   width: ${({ size }) => size};
   height: ${({ size }) => size};
 

@@ -7,7 +7,7 @@ type ButtonProps = {
   content: string;
   disabled?: boolean;
   css?: CSSProperties;
-  onClick: () => void;
+  onClick?: (arg?: any) => void;
 };
 
 const Button = ({

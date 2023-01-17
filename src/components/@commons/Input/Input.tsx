@@ -4,7 +4,7 @@ import { InputProps } from 'types';
 export type InputType = 'text';
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ name, label, type = 'text', list, placeholder, css }, ref) => {
+  ({ name, label, type = 'text', list, placeholder, css, onChange }, ref) => {
     return (
       <input
         ref={ref}
@@ -14,6 +14,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         placeholder={placeholder}
         style={css}
         list={list}
+        onChange={onChange}
       />
     );
   },

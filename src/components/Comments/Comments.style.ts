@@ -11,7 +11,7 @@ const Wrapper = styled.ul`
   width: 90%;
   height: 70%;
 
-  border: 1px solid red;
+  max-height: 70%;
 `;
 
 const ListItem = styled.li`
@@ -26,6 +26,8 @@ const ListItem = styled.li`
 
   text-align: center;
   margin-top: 10px;
+
+  padding: 10px;
 
   border-bottom: 1px solid lightgrey;
 `;

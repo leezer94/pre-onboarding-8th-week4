@@ -8,6 +8,8 @@ const Button = styled.button`
   background-color: lightgrey;
 
   text-align: center;
+
+  cursor: pointer;
 `;
 
 export { Button };
