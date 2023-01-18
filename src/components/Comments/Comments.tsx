@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { useDeleteCommentByIdMutation } from 'api/apiSlice';
 import { Flex, Button } from 'components/@commons';
 import useForm from 'hooks/useForm';

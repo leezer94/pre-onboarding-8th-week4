@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { useCallback, ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFormDetail } from 'slices/formDataSlice';

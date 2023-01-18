@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-
 import { createSlice } from '@reduxjs/toolkit';
 
 const formDetailSlice = createSlice({

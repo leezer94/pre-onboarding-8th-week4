@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import {
   useCreateCommentMutation,
   useGetCommentsQuery,
@@ -6,7 +5,7 @@ import {
 } from 'api/apiSlice';
 import { Button } from 'components/@commons';
 import useForm from 'hooks/useForm';
-import { Dispatch, MouseEvent, SetStateAction } from 'react';
+import { Dispatch, FormEvent, SetStateAction } from 'react';
 
 import * as S from './Form.style';
 import useCurrentPage from '../../hooks/useCurrentPage';
@@ -28,7 +27,7 @@ const Form = ({ type, setPostStatus }: FormProps) => {
   const { handleCurrentPage } = useCurrentPage();
   const { formState, handleChange, handleResetForm } = useForm();
 
-  const handleCreateComment = (e: MouseEvent<HTMLElement>) => {
+  const handleCreateComment = (e: FormEvent<HTMLElement>) => {
     e.preventDefault();
 
     createComment(formState);
@@ -42,7 +41,7 @@ const Form = ({ type, setPostStatus }: FormProps) => {
     handleCurrentPage(1);
   };
 
-  const handleModifyComment = (e: MouseEvent<HTMLElement>) => {
+  const handleModifyComment = (e: FormEvent<HTMLElement>) => {
     e.preventDefault();
 
     updateComment(formState);
@@ -57,7 +56,17 @@ const Form = ({ type, setPostStatus }: FormProps) => {
   };
 
   return (
-    <S.Form>
+    <S.Form
+      onSubmit={(e) => {
+        e.preventDefault();
+
+        return type === 'create'
+          ? handleCreateComment(e)
+          : type === 'modify'
+          ? handleModifyComment(e)
+          : null;
+      }}
+    >
       <input
         name='profile_url'
         type='list'
@@ -95,17 +104,7 @@ const Form = ({ type, setPostStatus }: FormProps) => {
         value={formState.createdAt}
         onChange={handleChange}
       />
-      <Button
-        type='submit'
-        content='등록'
-        onClick={(e) =>
-          type === 'create'
-            ? handleCreateComment(e)
-            : type === 'modify'
-            ? handleModifyComment(e)
-            : null
-        }
-      />
+      <Button type='submit' content='등록' />
     </S.Form>
   );
 };
